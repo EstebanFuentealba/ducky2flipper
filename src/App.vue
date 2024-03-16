@@ -1,7 +1,11 @@
 <script>
 import { translate_duckyscript_to_js } from "./utils/duck2fz";
+import { Editor } from "@guolao/vue-monaco-editor";
 
 export default {
+  components: {
+    Editor,
+  },
   computed: {
     flipperZeroScript() {
       return translate_duckyscript_to_js(this.duckyScript);
@@ -33,9 +37,13 @@ REM ----
       <span class="text-xl rotate-[15deg] to">2</span
       ><span class="text-orange-400 flipper">FLIPPER</span>
     </div>
-    <div class="w-3/4 flex bg-gray-200 w-full gap-2 m-4 h-4/6 p-4">
-      <div class="border border-gray-300 rounded-md bg-white flex-1 p-2 h-auto">
-        <vue-monaco-editor
+    <div
+      class="lg:w-3/4 w-full flex lg:flex-row flex-col bg-gray-200 gap-2 m-4 h-4/6 p-4"
+    >
+      <div
+        class="border border-gray-300 rounded-md bg-white flex-1 md:w-auto w-full p-2 h-auto"
+      >
+        <Editor
           v-model:value="duckyScript"
           :options="MONACO_EDITOR_OPTIONS"
           language="js"
@@ -43,7 +51,7 @@ REM ----
         />
       </div>
       <div class="border border-gray-300 rounded-md bg-white flex-1 p-2">
-        <vue-monaco-editor
+        <Editor
           v-model:value="flipperZeroScript"
           :options="MONACO_EDITOR_OPTIONS"
           language="javascript"
@@ -54,8 +62,9 @@ REM ----
 </template>
 
 <style scoped>
-
-.ducky, .flipper, .to {
+.ducky,
+.flipper,
+.to {
   text-shadow: #000 0px 0 1px;
 }
 </style>
