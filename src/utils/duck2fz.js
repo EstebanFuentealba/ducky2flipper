@@ -1,6 +1,6 @@
 // Define un diccionario que mapea comandos de DuckyScript a comandos de JavaScript de Flipper Zero
 const command_mapping = {
-    "STRING": "badusb.println('{}');",
+    "STRING": "badusb.println({});",
     "DELAY": "delay({});",
     "GUI": "badusb.press('GUI', '{}');",
     "CTRL": "badusb.press('CTRL', '{}');",
@@ -62,7 +62,7 @@ badusb.quit();
         const command = parts[0];
         const args = parts.slice(1).join(' ');
         if (command in command_mapping) {
-            const js_command = command_mapping[command].replace('{}', args).replace(/'/g, "\\'");
+            const js_command = command_mapping[command].replace('{}', `'${args.replace(/'/g, "\\'")}'`);
             jsCode += `\t${js_command}\n`;
         } else {
             console.warn(`Warning: Unsupported DuckyScript command '${command}'`);
