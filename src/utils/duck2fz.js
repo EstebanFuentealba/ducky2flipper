@@ -62,7 +62,7 @@ badusb.quit();
         const command = parts[0];
         const args = parts.slice(1).join(' ');
         if (command in command_mapping) {
-            const js_command = command_mapping[command].replace('{}', args);
+            const js_command = command_mapping[command].replace('{}', args).replace(/'/g, "\'");
             jsCode += `\t${js_command}\n`;
         } else {
             console.warn(`Warning: Unsupported DuckyScript command '${command}'`);
