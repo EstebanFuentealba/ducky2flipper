@@ -27,7 +27,7 @@ for (let i = 1; i < 13; i++) {
 }
 
 export function translate_duckyscript_to_js(input_file) {
-    let scriptBase = (jsCode) => (`/* Flipper Zero JavaScript BasUSB */
+    let scriptBase = (jsCode) => (`/* Flipper Zero JavaScript BadUSB */
 const badusb = require('badusb');
 const notify = require('notification');
 const flipper = require('flipper');
